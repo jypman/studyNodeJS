@@ -1,10 +1,23 @@
 const express = require('express');
+let app = express();
+
 const http = require('http');
 const port = 3000;
-let app = express();
 
 app.get('/', (req, res, next) => {
     res.send('hello world!!');
+});
+
+app.post('/', (req, res, next) => {
+    res.send('/ post 요청');
+});
+
+app.get('/users', (req, res, next) => {
+    res.send('/users get 요청');
+});
+
+app.post('/users', (req, res, next) => {
+    res.send('/users post 요청');
 });
 
 http.createServer(app).listen(port, () => {

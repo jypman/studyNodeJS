@@ -1,24 +1,25 @@
 const express = require('express');
-const http = require('http');
-const port = 3000;
 let app = express();
 
-// post요청에 대해 조회하려면 body-parser를 미들웨어로 등록해야 한다
+// express에서 post 요청을 받을 때 body를 이용하려면 body-parser를 미들웨어로 등록해야 한다.
+// body를 파싱하기 위해 on('data')로 이벤트를 감지하고 on('end')로 마무리하는 것을 body-parser가 대신 해준다.
 const bodyParser = require('body-parser'); // 모듈 호출
 app.use(bodyParser()); // 미들웨어 등록
 
+const http = require('http');
+const port = 3000;
 
-app.get('/user/:id', (req, res, next) => {
+app.get('/user/:jyp', (req, res, next) => {
     let params = req.params;
-    let querys = req.query;
-    console.log(params, querys);
+    let queries = req.query;
+    console.log('params : ', params, '\nqueries : ', queries);
     res.send('hello world!');
 });
 
 app.post('/', (req, res, next) => {
     let body = req.body;
     console.log(body);
-    res.send('/post request');
+    res.send('/을 post로 요청');
 });
 
 http.createServer(app).listen(port, () => {
