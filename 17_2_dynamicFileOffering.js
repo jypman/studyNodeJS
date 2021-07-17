@@ -8,14 +8,14 @@ const server = http.createServer( (req, res) => {
     fs.readFile(`.${url}`, (err, data) => {
         if(!err){
             res.writeHead(200, {'Content-Type' : 'text/html'})
-            res.end(data)
+            return res.end(data)
         }
         else if(err && err['errno'] === -2){
             res.writeHead(404, {'Content-Type' : 'text/plain'})
-            res.end('not found file')
+            return res.end('not found file')
         }
-        res.writeHead(500, {'Content-Type' : 'text/plain'})
-        res.end('server error!')
+        res.writeHead(500)
+        return res.end('server error!')
     })
 })
 

@@ -12,12 +12,13 @@ const server = http.createServer((req, res) => {
             // 응답 에러객체를 조회하면 {code : 'ENOENT'}를 볼 수 있는데 이것은 "No such file or directory"를 의미한다.
             console.log(err);
             res.writeHead(500);
-            res.end('server error');
+            // fs.readFile()의 콜백함수 안에서 res.end()로 응답을 할 때 return으로 종료하지 않으면 해당 프로세스가 살아 있어 에러가 발생한다.
+            return res.end('server error');
         }
         // 해당 파일을 서버를 통해 브라우저에 뿌릴 수 있다.
         res.writeHead(200, {'Content-Type' : 'text/html'});
         // fs.readFile()로 파일을 읽으면 buffer 형태로 데이터를 읽기 때문에 문자열로 파싱해줘야 한다.
-        res.end(data.toString());
+        return res.end(data.toString());
     });
 });
 server.listen(port, () => {
