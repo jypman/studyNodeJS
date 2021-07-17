@@ -1,41 +1,33 @@
 const http = require('http');
-const url = require('url');
 const hostName = '127.0.0.1';
 const port = 3000;
 
-const server = http.createServer((req,res) => {
-    switch (req.method) {
+const server = http.createServer((req, res) => {
+    let {url, method} = req;
+    switch (method) {
+        // POST요청일 경우 case에서 POST로 바꿔주기만 하면 된다.
+        // 하지만 body의 데이터를 받을 수 있는 것은 get을 제외한 것들이다.
         case 'GET':
-            // req.url은 api로 요청된 url의 path정보다. 예) 도메인 혹은 IP주소 다음에 오는 /부터가 req.url의 값이다.
-            if (req.url === '/') {
-                res.setHeader('Content-Type', 'text/plain');
-                res.writeHead(200);
-                res.end('hello surver');
+            if (url === '/users') {
+                // 한글로 응답을 할 때 각각 인코딩을 해야 한글이 깨지지 않는다.
+                res.writeHead(200, {'Content-Type' : 'text/plain; charset=utf-8'});
+                res.end('hello! users 접속!');
             }
-            else if(req.url.substring(0,5) === '/data'){
-                // url모듈의 parse()는 url문자열을 넣으면 url 객체를 반환한다.
-                // 두번째인자는 필수가 아니지만 true를 넣어주면 url객체를 json형태로 받을 수 있다.
-                // 조회하고 싶으면 아래 주석을 풀자!
-                // console.log(url.parse(req.url, true));
-                const queryParams = url.parse(req.url, true).query;
-                res.setHeader('Content-Type', 'text/html');
+            else if (url === '/boards') {
                 res.writeHead(200);
-                //res.write()는 응답 코드를 응답 본문에 보낸다.
-                //res.write()를 통해 응답 코드를 응답 본문에 넣고 마지막에 res.end()로 응답 전송을 완료하는 형식이다.
-                res.write('<html><head><title>He did it!!!</title></head><body>');
-
-                for (let key in queryParams) {
-                    res.write(`<h1>${key}</h1>`);
-                    res.write(`<h2>${queryParams[key]}</h2>`);
-                }
-                res.end('</body></html>');
+                res.end('hello! boards access!');
             }
-            break;
-        // 조건문에 모두 해당되지 않을 경우 응답 전송을 바로 완료처리한다.
+            else if (url === '/clothes') {
+                res.writeHead(200, {'Content-Type' : 'text/plain; charset=utf-8'});
+                res.end('hello! clothes 접속!');
+            } 
+            break;    
         default:
-            res.end();
+            res.statusCode = 404;
+            res.end('NOT FOUND PAGE!!');
     }
 });
+
 server.listen(port, hostName, () => {
-    console.log(` 디음과 같은 주소에서 서버가 작동하고 있어용^^ http://${hostName}:${port}`);
+    console.log(`다음과 같은 포트에서 서버가 작동하고 있습니당^^ http://${hostName}:${port}/`);
 })
