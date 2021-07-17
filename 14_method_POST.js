@@ -4,6 +4,7 @@ const port = 3000;
 const server = http.createServer((req, res) => {
     let {url, method} = req;
     let body = {};
+    // post 요청 시 body를 실어서 보냈다는 이벤트를 감지하는 것이 req.on('data',() =>{})이다.
     req.on('data', chunk => {
         chunk.toString().split('&').map(item => {
             let s = item.split('=');
@@ -13,7 +14,7 @@ const server = http.createServer((req, res) => {
         });
     });
     // req.on('end', function(){})은 비동기로 실행된다.
-    // 데이터 파싱이 끝난 후 요청에 대한 처리가 실행되려면 요청에 대한 처리 부분을 해당 콜백 함수 안에 넣어준다.
+    // body 데이터 파싱이 끝난 후 요청에 대한 처리를 하려면 해당 로직을 콜백 함수 안에 넣어준다.
     req.on('end', () => {
         for (let i = 0; i < 10; i++) {
             console.log(i)            
