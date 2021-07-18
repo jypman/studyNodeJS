@@ -40,7 +40,6 @@ app.get('/', (req, res, next) => {
 app.use((req, res, next) => {
     console.log('statusCode : 404')
     next('404지만 500으로 넘어갓!')
-    res.status(404).send('<h1>Not Found Page</h1>')
 })
 
 app.use((err, req, res, next) => {
