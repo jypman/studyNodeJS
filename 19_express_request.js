@@ -4,7 +4,9 @@ let app = express();
 // express에서 post 요청을 받을 때 body를 이용하려면 body-parser를 미들웨어로 등록해야 한다.
 // body를 파싱하기 위해 on('data')로 이벤트를 감지하고 on('end')로 마무리하는 것을 body-parser가 대신 해준다.
 const bodyParser = require('body-parser'); // 모듈 호출
-app.use(bodyParser()); // 미들웨어 등록
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+
 
 const http = require('http');
 const port = 3000;
