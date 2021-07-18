@@ -1,3 +1,6 @@
+// app.js는 미들웨어만 포함하고 서버를 직접 생성하는 코드가 존재하지 않는다.
+// 서버를 생성하는 일은 bin/www가 담당한다.
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -9,8 +12,9 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-// view engine setup
+// views는 템플릿 엔진이 있는 디렉토리의 경로를 알려준다.
 app.set('views', path.join(__dirname, 'views'));
+// view engine은 어떤 템플릿 엔진을 사용할지 알려주는 부분이다.
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
@@ -22,14 +26,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// catch 404 and forward to error handler
+// 아래의 코드는 에러를 처리하는 부분이다.
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
+  // res.locals에 대해서 공부가 필요하다!
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 

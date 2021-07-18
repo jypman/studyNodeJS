@@ -1,5 +1,9 @@
 #!/usr/bin/env node
 
+// bin디렉토리의 www는 app.js파일을 가져와서 http모듈을 이용해서 서버를 등록한다.
+// 그리고 서버 등록 중 문제에 대해 처리하는 역할을 한다.
+// 서버 등록 중 문제가 발생하지 않았는지 설정하고 서버를 몇 번 포트에서 열지 설정한다.
+
 /**
  * Module dependencies.
  */
@@ -11,7 +15,8 @@ var http = require('http');
 /**
  * Get port from environment and store in Express.
  */
-
+// process.env를 이용하려면 .env파일을 생성하자!
+// normalizePort()는 아래에서 정의된 함수다.
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
@@ -26,7 +31,10 @@ var server = http.createServer(app);
  */
 
 server.listen(port);
+// onError, onListening의 경우 해당 파일의 하단에 정의되어 있다.
+// 서버 실행 중 문제가 발생하면 발동하는 이벤트이다.
 server.on('error', onError);
+// 서버가 정상적으로 실행되면 발동하는 이벤트이다.
 server.on('listening', onListening);
 
 /**
@@ -34,6 +42,8 @@ server.on('listening', onListening);
  */
 
 function normalizePort(val) {
+  // parseInt()의 두번째 인자는 첫번째 인자를 몇진수로 변환할 것인지 알려주는 곳이다.
+  // parseInt()의 두번째 인자의 기본 값은 10이 아니니 주의하자!
   var port = parseInt(val, 10);
 
   if (isNaN(port)) {
