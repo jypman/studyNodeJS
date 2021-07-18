@@ -7,24 +7,18 @@ let app = express();
 
 // 라우터 중 하나 
 app.get('/:id', (req, res, next) => {
-    let id = req.params.id;
-    if (id == 1) {
-        next('error 발생');
-    } else{
-        res.send('hello world!!');
-    };
+    let id = Number(req.params.id);
+    if (id === 1) next('error가 발생했어여 ㅠ');
+    else res.send('hello world!!');
 });
 
-// 각종 라우터 등록
+// 아래의 경우 각종 미들웨어가 등록되어 있다.
 
-// 에러 미들웨어
-app.use((req, res, next) => {
-    console.log('404');
-    res.status(404).send('<h1>Not Found Page!!</h1>');
-})
-app.use((err, req, res, next) => {
+// 위 일치하는 라우터가 없을 경우 아래의 미들웨어가 실행된다.
+// 에러 미들웨어에서 첫번째 인자 err에는 위의 next()의 인자 값이 들어온다.
+app.use((err,req, res, next) => {
     console.log(err);
-    res.status(500).send(err);
+    res.status(404).send(err);
 });
 
 // 해당 포트에서 서버 실행
