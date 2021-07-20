@@ -33,3 +33,12 @@ console.log('사용 가능한 모델들 :',users, boards)
 //     .then(result => {
 //         console.log('추가한 데이터: ',result);
 //     })
+
+// 데이터 수정
+// users.update({
+//     name : 'bnm',
+// },{
+//     where : {id : 12}
+// }).then(() => {
+//     console.log('update is completed')
+// })
