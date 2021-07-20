@@ -11,6 +11,7 @@ const password = process.env.DATABASE_PASSWORD
 const options = {
     host : '127.0.0.1',
     dialect : 'mysql',
+    // sequelize에서 사용한 쿼리문을 콘솔창에서 볼 수 있도록 하는 옵션이며 false로 보이지 않도록 할 수 있다.
     logging : false
 }
 
