@@ -1,6 +1,4 @@
 /node_modules/
 /myServer/node_modules/
 /.env
-/yarn.lock
-/package-lock.json
 /.idea
