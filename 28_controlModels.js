@@ -42,3 +42,10 @@ console.log('사용 가능한 모델들 :',users, boards)
 // }).then(() => {
 //     console.log('update is completed')
 // })
+
+// 데이터 삭제
+// users.destroy({
+//     where : {id : 13}
+// }).then(() => {
+//     console.log('delete is completed')
+// })
