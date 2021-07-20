@@ -3,10 +3,11 @@ let {users, boards} = require('./models');
 
 console.log(users, boards)
 
-users.create({
-    name : 'jyp',
-    age : '27'
-})
-.then(result => {
-    console.log(result);
-})
+// 데이터 추가
+// users.create({
+//     name : 'jyp',
+//     age : '27'
+// })
+// .then(result => {
+//     console.log(result);
+// })
