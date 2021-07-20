@@ -34,6 +34,36 @@ console.log('사용 가능한 모델들 :',users, boards)
 //         console.log('추가한 데이터: ',result);
 //     })
 
+// 모든 데이터 조회
+// findAll({})의 경우 모든 데이터를 출력한다.
+// findAll({raw : true})의 경우 간결하게 데이터를 조회할 수 있다.
+// users.findAll({raw : true})
+//     .then(result => {
+//         console.log('조회한 데이터 : ', result)
+//     })
+
+// 가장 먼저 등장하는 하나의 데이터만 조회
+// sequelize 6버전에서는 find()가 findOne()으로 바뀜.
+// users.findOne({raw : true})
+//     .then(result => {
+//         console.log('첫 데이터 조회 결과 : ',result)
+//     })
+
+// 아이디 값을 이용하여 데이터 조회
+// 해당하는 데이터를 조회하지 못했을 경우 result에는 null이 온다.
+// let id = 9
+// users.findByPk(id, {raw : true})
+//     .then(result => {
+//         console.log(`id가 ${id}인 데이터 조회 :`, result)
+//     })
+
+// 해당 테이블의 전체 데이터 갯수 및 전체 데이터 조회
+users.findAndCountAll({raw : true})
+    .then(result => {
+        console.log('전체 데이터 갯수 조회 결과 : ', result.count)
+        console.log('전체 데이터 조회 결과 : ', result.rows)
+    })
+
 // 데이터 수정
 // users.update({
 //     name : 'bnm',
