@@ -2,3 +2,4 @@
 /myServer/node_modules/
 /.env
 /.idea
+/crawling/

@@ -2,7 +2,9 @@
   "name": "helloNodejs",
   "version": "1.0.0",
   "dependencies": {
+    "axios": "^0.21.1",
     "body-parser": "^1.19.0",
+    "cheerio": "^1.0.0-rc.10",
     "cookie-parser": "^1.4.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
@@ -10,6 +12,7 @@
     "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
     "qs": "^6.10.1",
+    "request": "^2.88.2",
     "sequelize": "^6.6.5"
   }
 }
