@@ -47,8 +47,9 @@ db.sql = sequelize;
 //
 db.S = Sequelize;
 
-// 객체로 생성된 모델과 데이터베이스의 싱크를 맞춘다.
-// 모델파일을 통해 데이터베이스의 테이블을 생성할 수 있다.
-sequelize.sync();
+// 모델 동기화
+// 옵션이 { alter: true }의 경우 DB의 테이블의 현재 상태를 확인 후
+// 테이블에서 필요한 변경을 수행하여 모델과 일치하도록 한다.
+sequelize.sync({ alter: true });
 
 module.exports = db;
