@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       // 예시
-      // this.hasMany(models.boards, {foreignKey : 'userId'})
+      this.hasMany(models.Persons, {foreignKey : 'userId'})
     }
     // 외부의 init메소드를 class안에서 다음과 같이 사용가능
     // static init(sequelize, DataTypes) {

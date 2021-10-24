@@ -20,7 +20,7 @@ module.exports = {
         // 한국 타임존으로 설정한다.
         "timezone" : "+09:00",
         // sequelize에서 사용한 쿼리문을 콘솔창에서 볼 수 있도록 하는 옵션이며 false는 보지 않는다는 의미
-        "logging" : false
+        "logging" : true
     },
     "test": {
         "username": process.env.DATABASE_USER,
@@ -34,7 +34,7 @@ module.exports = {
             typeCast: true
         },
         "timezone" : "+09:00",
-        "logging" : false
+        "logging" : true
     },
     "production": {
         "username": process.env.DATABASE_USER,
